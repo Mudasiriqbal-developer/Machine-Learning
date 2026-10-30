@@ -1,0 +1,49 @@
+# ==============================================================================
+# Git Ignore Configuration - Machine Learning Assignment Projects
+# ==============================================================================
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# IDE and Editor Configuration
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large Archive Files & Datasets
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+*.gz
+*.iso
+data/large/
+*.h5
+*.hdf5
+*.parquet
+
+# Streamlit Local Runtime
+.streamlit/
