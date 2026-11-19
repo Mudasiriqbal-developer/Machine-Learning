@@ -1,0 +1,6 @@
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+*.pkl
+q2_random_forest/data/intel_images/*
+!q2_random_forest/data/intel_images/.gitkeep
