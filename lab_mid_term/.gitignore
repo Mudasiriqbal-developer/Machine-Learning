@@ -1,6 +1,8 @@
 __pycache__/
 .ipynb_checkpoints/
 .venv/
+.venv311/
+automl_log.txt
 *.pkl
 q2_random_forest/data/intel_images/*
 !q2_random_forest/data/intel_images/.gitkeep
