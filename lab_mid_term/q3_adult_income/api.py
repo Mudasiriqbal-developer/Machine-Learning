@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 import json
 import joblib
 import pandas as pd
@@ -7,9 +7,8 @@ from pydantic import BaseModel
 
 app = FastAPI(title="Adult Income Prediction API")
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "models", "best_model.pkl")
-METRICS_PATH = os.path.join(BASE_DIR, "models", "metrics.json")
+MODEL_PATH = Path(__file__).parent / "models" / "best_model.pkl"
+METRICS_PATH = Path(__file__).parent / "models" / "metrics.json"
 
 model = joblib.load(MODEL_PATH)
 with open(METRICS_PATH, "r", encoding="utf-8") as f:

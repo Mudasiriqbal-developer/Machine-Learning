@@ -1,9 +1,40 @@
-import os
+import threading
+import time
+from pathlib import Path
 import requests
 import pandas as pd
 import streamlit as st
+import uvicorn
+from api import app as fastapi_app
 
 API_URL = "http://127.0.0.1:8000"
+
+
+@st.cache_resource
+def start_fastapi():
+    try:
+        r = requests.get(f"{API_URL}/metrics", timeout=1)
+        if r.status_code == 200:
+            return
+    except Exception:
+        pass
+
+    config = uvicorn.Config(app=fastapi_app, host="127.0.0.1", port=8000, log_level="warning")
+    server = uvicorn.Server(config)
+    thread = threading.Thread(target=server.run, daemon=True)
+    thread.start()
+
+    start_time = time.time()
+    while time.time() - start_time < 15:
+        try:
+            r = requests.get(f"{API_URL}/metrics", timeout=1)
+            if r.status_code == 200:
+                break
+        except Exception:
+            time.sleep(0.5)
+
+
+start_fastapi()
 
 st.set_page_config(page_title="Adult Income Prediction", layout="wide")
 
@@ -13,7 +44,7 @@ st.write("Predict whether an individual earns more than $50,000 per year based o
 
 @st.cache_data
 def get_categorical_options():
-    csv_path = os.path.join(os.path.dirname(__file__), "data", "adult.csv")
+    csv_path = Path(__file__).parent / "data" / "adult.csv"
     df = pd.read_csv(csv_path, skipinitialspace=True, na_values="?")
     df.columns = df.columns.str.strip()
     return {
