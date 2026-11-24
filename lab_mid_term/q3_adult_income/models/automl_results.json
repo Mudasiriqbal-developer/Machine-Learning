@@ -1,0 +1,9 @@
+{
+  "accuracy": 0.7669,
+  "precision": 0.5094,
+  "recall": 0.8635,
+  "f1": 0.6408,
+  "roc_auc": 0.8932,
+  "train_time_sec": 225.87,
+  "best_pipeline": "Pipeline(steps=[('minmaxscaler', MinMaxScaler()),\n                ('selectfwe', SelectFwe(alpha=0.0006973008821)),\n                ('featureunion-1',\n                 FeatureUnion(transformer_list=[('featureunion',\n                                                 FeatureUnion(transformer_list=[('kbinsdiscretizer',\n                                                                                 KBinsDiscretizer(encode='onehot-dense',\n                                                                                                  n_bins=24,\n                                                                                                  random_state=42,\n                                                                                                  strategy=np.str_('uniform')))])),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('featureunion-2',\n                 FeatureUnion(transformer_list=[('skiptransformer',\n                                                 SkipTransformer()),\n                                                ('passthrough',\n                                                 Passthrough())])),\n                ('bernoullinb',\n                 BernoulliNB(alpha=0.5316530115272, fit_prior=np.False_))])"
+}

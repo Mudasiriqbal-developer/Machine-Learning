@@ -55,13 +55,16 @@ def main():
     print(f"Using TPOT version: {tpot_version}")
 
     tpot_model = TPOTClassifier(
-        max_time_mins=MAX_MINUTES,
-        scoring="roc_auc",
-        cv=3,
-        random_state=42,
-        n_jobs=4,
-        verbosity=2
-    )
+    search_space="linear-light",
+    scorers=["roc_auc"],
+    scorers_weights=[1],
+    cv=3,
+    max_time_mins=MAX_MINUTES,
+    generations=None,
+    n_jobs=4,
+    random_state=42,
+    verbose=2,
+)
 
     # 5. run optimization search
     print(f"Starting TPOT search (time limit: {MAX_MINUTES} minutes)...")
